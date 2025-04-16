@@ -11,7 +11,10 @@ import SwiftUI
 struct GitHubApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            AppRouter()
+                .onOpenURL { url in
+                    print(url.absoluteString)
+                }
         }
     }
 }
