@@ -18,7 +18,7 @@ enum AppRoute {
 
 struct AppRouter: View {
     
-    @State var isLoggedIn: Bool = false
+    @State var isLoggedIn: Bool = true
     
     var body: some View {
         if isLoggedIn {
@@ -26,6 +26,5 @@ struct AppRouter: View {
         } else {
             LoginView()
         }
-        
     }
 }
