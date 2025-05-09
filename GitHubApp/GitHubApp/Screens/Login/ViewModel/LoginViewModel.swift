@@ -13,11 +13,15 @@ final class LoginViewModel: ObservableObject {
     private var apiService = DefaultAPIService()
     private var cancelables = Set<AnyCancellable>()
     
+    @Published var showAlert: Bool = false
+    // Just show to the user in test purposes only!
+    @Published var token: String?
+    
     func login() {
         oauthManager.login()
             .receive(on: DispatchQueue.main)
             .sink { completion in
-                print("UPS")
+                // handle errors
             } receiveValue: { code in
                 self.handleCode(code)
             }.store(in: &cancelables)
@@ -26,8 +30,10 @@ final class LoginViewModel: ObservableObject {
     private func handleCode(_ code: String) {
         apiService.exchangeCodeForToken(code: code)
             .sink { completion in
-                print("UPS")
+                // handle errors
             } receiveValue: { token in
+                self.token = token.access_token
+                self.showAlert = true
                 print("GitHubApp token = \(token)")
             }.store(in: &cancelables)
 

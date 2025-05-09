@@ -43,7 +43,14 @@ struct LoginView: View {
                 }
             }
             
-        }.padding(.horizontal, 20)
+        }
+        .padding(.horizontal, 20)
+        .alert("Access token received!", isPresented: $viewModel.showAlert) {
+            Text("Token = \(viewModel.token)")
+            Button("Ok") {
+                
+            }
+        }
     }
 }
 
