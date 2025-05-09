@@ -12,9 +12,6 @@ struct GitHubApp: App {
     var body: some Scene {
         WindowGroup {
             AppRouter()
-                .onOpenURL { url in
-                    print(url.absoluteString)
-                }
         }
     }
 }
